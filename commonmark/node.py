@@ -78,6 +78,7 @@ class Node(object):
         self.nxt = None
         self.sourcepos = sourcepos
         self.last_line_blank = False
+        self.last_line_checked = False
         self.is_open = True
         self.string_content = ''
         self.literal = None
@@ -99,6 +100,18 @@ class Node(object):
     def pretty(self):
         from pprint import pprint
         pprint(self.__dict__)
+
+    def normalize(self):
+        prev = None
+        for curr, _ in self.walker():
+            if prev is None:
+                prev = curr
+                continue
+            if prev.t == 'text' and curr.t == 'text':
+                prev.literal += curr.literal
+                curr.unlink()
+            else:
+                prev = curr
 
     def is_container(self):
         return is_container(self)

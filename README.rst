@@ -1,7 +1,7 @@
-CommonMark-py
+commonmark.py
 =============
 
-CommonMark-py is a pure Python port of `jgm <https://github.com/jgm>`__'s
+commonmark.py is a pure Python port of `jgm <https://github.com/jgm>`__'s
 `commonmark.js <https://github.com/jgm/commonmark.js>`__, a
 Markdown parser and renderer for the
 `CommonMark <http://commonmark.org>`__ specification, using only native
@@ -9,12 +9,12 @@ modules. Once both this project and the CommonMark specification are
 stable we will release the first ``1.0`` version and attempt to keep up
 to date with changes in ``commonmark.js``.
 
-CommonMark-py is tested against the CommonMark spec with Python versions
-2.6, 2.7, 3.3, 3.4, 3.5, and 3.6.
+commonmark.py is tested against the CommonMark spec with Python versions
+2.7, 3.4, 3.5, 3.6, and 3.7.
 
-**Current version:** 0.7.4
+**Current version:** 0.9.1
 
-|Build Status| |Doc Link|
+|Pypi Link| |Build Status| |Doc Link|
 
 Installation
 ------------
@@ -28,25 +28,25 @@ Usage
 
 ::
 
-    >>> import CommonMark
-    >>> CommonMark.commonmark('*hello!*')
+    >>> import commonmark
+    >>> commonmark.commonmark('*hello!*')
     '<p><em>hello!</em></p>\n'
 
 Or, without the syntactic sugar:
 
 .. code:: python
 
-    import CommonMark
-    parser = CommonMark.Parser()
+    import commonmark
+    parser = commonmark.Parser()
     ast = parser.parse("Hello *World*")
     
-    renderer = CommonMark.HtmlRenderer()
+    renderer = commonmark.HtmlRenderer()
     html = renderer.render(ast)
     print(html) # <p>Hello <em>World</em><p/>
     
     # inspecting the abstract syntax tree
-    json = CommonMark.dumpJSON(ast)
-    CommonMark.dumpAST(ast) # pretty print generated AST structure
+    json = commonmark.dumpJSON(ast)
+    commonmark.dumpAST(ast) # pretty print generated AST structure
    
 There is also a CLI:
 
@@ -83,7 +83,7 @@ a pull request adding your test to the existing test suite.
 Tests
 -----
 
-To work on CommonMark-py, you will need to be able to run the test suite to
+To work on commonmark.py, you will need to be able to run the test suite to
 make sure your changes don't break anything. To run the tests, you can do
 something like this:
 
@@ -92,7 +92,7 @@ something like this:
    $ pyvenv venv
    $ ./venv/bin/python setup.py develop test
 
-The tests script, ``CommonMark/tests/run_spec_tests.py``, is pretty much a devtool. As
+The tests script, ``commonmark/tests/run_spec_tests.py``, is pretty much a devtool. As
 well as running all the tests embedded in ``spec.txt`` it also allows you
 to run specific tests using the ``-t`` argument, provide information
 about passed tests with ``-p``, percentage passed by category of test
@@ -103,11 +103,11 @@ tracing.
 
 ::
 
-    $ ./venv/bin/python CommonMark/tests/run_spec_tests.py -h
+    $ ./venv/bin/python commonmark/tests/run_spec_tests.py -h
     usage: run_spec_tests.py [-h] [-t T] [-p] [-f] [-i] [-d] [-np] [-s]
 
-    script to run the CommonMark specification tests against the CommonMark.py
-    parser
+    script to run the CommonMark specification tests against the commonmark.py
+    parser.
 
     optional arguments:
       -h, --help  show this help message and exit
@@ -124,11 +124,14 @@ Authors
 
 -  `Bibek Kafle <https://github.com/kafle>`__
 -  `Roland Shoemaker <https://github.com/rolandshoemaker>`__
--  `Nik Nyby <https://github.com/nikolas>`__
+-  `Nikolas Nyby <https://github.com/nikolas>`__
 
-.. |Build Status| image:: https://travis-ci.org/rtfd/CommonMark-py.svg?branch=master
-   :target: https://travis-ci.org/rtfd/CommonMark-py
+.. |Pypi Link| image:: https://img.shields.io/pypi/v/commonmark.svg
+   :target: https://pypi.org/project/commonmark/
+
+.. |Build Status| image:: https://travis-ci.org/rtfd/commonmark.py.svg?branch=master
+   :target: https://travis-ci.org/rtfd/commonmark.py
    
-.. |Doc Link| image:: https://readthedocs.org/projects/commonmark-py/badge/?version=latest
-   :target: https://commonmark-py.readthedocs.io/en/latest/?badge=latest
+.. |Doc Link| image:: https://readthedocs.org/projects/commonmarkpy/badge/?version=latest
+   :target: https://commonmarkpy.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
